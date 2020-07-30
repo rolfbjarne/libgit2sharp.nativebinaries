@@ -28,7 +28,11 @@ if [[ $RID == *arm64 ]]; then
 	export TOOLCHAIN_FILE=/nativebinaries/CMakeLists.arm64.txt
 fi
 
-cmake -DCMAKE_BUILD_TYPE:STRING=Release \
+if [[ $CONFIG == "" ]]; then
+	CONFIG=Release
+fi
+
+cmake -DCMAKE_BUILD_TYPE:STRING=$CONFIG \
       -DBUILD_CLAR:BOOL=OFF \
       -DUSE_SSH=OFF \
       -DENABLE_TRACE=ON \
